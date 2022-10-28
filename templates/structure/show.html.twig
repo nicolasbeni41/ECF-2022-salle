@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Détails Structure{% endblock %}
+
+{% block body %}
+{% include ('_navbar.html.twig') %}
+<div class="mainContainer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header text-center mb-5 mt-2">Détails structure {{ structure.id }} - {{ structure.name }}</h1>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="row row-cols-12 row-cols-lg-3 d-flex justify-content-around structureDetails">
+                <div class="mt-3">
+                    <h2 class="mb-3">Identité de la structure</h2>
+                    <p><b>Nom du manager:</b> {{ structure.managerLastname }}</p>
+                    <p><b>Prénom du manager:</b> {{ structure.managerFirstname }}</p>
+                    <p><b>Email:</b> {{ structure.email }}</p>
+                    <p><b>Adresse:</b> {{ structure.address | title }}</p>
+                    <p><b>Actif:</b> {{ structure.active ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+
+                </div>
+                <div class="mt-5">
+                    <h2 class="mb-3">Permissions du partenaire</h2>
+                        <p><b>Vente de nourriture:</b> {{ structure.sellFood ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                        <p><b>Vente de boisson:</b> {{ structure.sellDrink ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                        <p><b>Envoi de newsletter:</b> {{ structure.sendNewsletter ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                        <p><b>Envoi de newsletter:</b> {{ structure.scheduleManagement ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                        <p><b>Cours prticuliers:</b> {{ structure.privateLesson ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="ms-5 mt-5">
+            <a href="{{ path('app_structure_index') }}" class="btn btn-outline-success mb-2">Retour à la liste</a>
+            <br>
+            <a href="{{ path('app_structure_edit', {'id': structure.id}) }}" class="btn btn-outline-primary">Modifier</a>
+
+            {{ include('structure/_delete_form.html.twig') }}
+        </div>
+    </div>
+    {% include('_footer.html.twig') %}
+</div>
+{% endblock %}

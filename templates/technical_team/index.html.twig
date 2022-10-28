@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipe technique{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    {{ include('_navbar.html.twig') }}
+
+    <h1 class="text-center mt-3 mb-5">Bienvenue {{ app.user.firstname | capitalize }}</h1>
+
+    <section class="mainContainer">
+        <div class="mainContainer__dashboard">
+            <p>Dans ce tableau de bord, vous pouvez gérer:</p>
+            <div class="row gap-3 d-flex justify-content-around mt-5">
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Les partenaires SportClub</h5>
+                        <a href="{{ path('app_partner_index') }}">
+                            <h6 class="text-center m-4"><i class="fa-solid fa-users fa-4x"></i></h6>
+                        </a>
+                        <p class="text-muted">Création et modification de compte</p>
+                    </div>
+                </div>
+                
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Les structures SportClub</h5>
+                        <a href="{{ path('app_structure_index') }}">
+                            <h6 class="text-center m-4"><i class="fa-solid fa-dumbbell fa-4x"></i></h6>
+                        </a>
+                        <p class="text-muted">Création et modification de compte</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include('_footer.html.twig') %}
+</div>
+{% endblock %}

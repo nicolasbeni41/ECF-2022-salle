@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Partenaires{% endblock %}
+
+{% block body %}
+{% include('_navbar.html.twig') %}
+
+{# Alert message after changing permissions if status isn't active #}
+{% for message in app.flashes('notice') %}
+    <div class="alert alert-danger text-center mt-5">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<div class="mainContainer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header text-center mb-5 mt-5">Liste des partenaires</h1>
+            </div>
+        </div>
+        <div class="mx-5 my-3 d-flex justify-content-center">
+            <a href="{{ path('app_partner_new') }}" class="btn btn-outline-primary">Créer un nouveau partenaire</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="m-5">
+        {# Pagination #}
+            <section aria-label="Page navigation example">
+                <ul class="pagination justify-content-around">
+                {% if currentPage is same as 1 %}
+                    <li class="page-item disabled"><a class="page-link" href="{{ path('app_partner_pagination', {'page': currentPage - 1 }) }}"><i class="fa-solid fa-angle-left fa-2x"></i></a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="{{ path('app_partner_pagination', {'page': currentPage - 1 }) }}"><i class="fa-solid fa-angle-left fa-2x"></i></a></li>
+                {% endif %}
+                    
+                    <button class="btn btn-outline-success my-auto" onclick=showActive()>Actifs</button>
+                    <button class="btn btn-outline-primary my-auto" onclick=showAll()>Tous</button>
+                    <button class="btn btn-outline-warning my-auto" onclick=showUnactive()>Inactifs</button>
+                    
+                {% if maxPartner %}
+                    <li class="page-item"><a class="page-link" href="{{ path('app_partner_pagination', {'page': currentPage + 1}) }}"><i class="fa-solid fa-angle-right fa-2x"></i></a></li>
+                {% else %}
+                    <li class="page-item disabled "><a class="page-link" href="{{ path('app_partner_pagination', {'page': currentPage + 1}) }}"><i class="fa-solid fa-angle-right fa-2x"></i></a></li>
+                {% endif %}
+                </ul>
+            </section>
+
+            <div class="row">
+                <div class="row row-cols-12 row-cols-lg-3 d-flex justify-content-around">
+                    {% for partner in partners %}
+
+                    {# Declaration of an active variable #}
+                        {% set active = "" %}
+                            {% if partner.active %}
+                                {% set active = true %}
+                            {% endif %}
+
+                            <div class="card m-5 {{ active == true ? 'active' : '' }} cardToHide">
+                                <div class="text-center">
+                                    <h4 class="card-title pt-2">{{ partner.id }} - {{ partner.name }}</h4>
+                                    <div class="d-flex justify-content-around">
+                                        <a href="{{ path('app_partner_show', {'id': partner.id}) }}" title="Voir">
+                                            <i class="fa-solid fa-folder-open fa-2x"></i>
+                                        </a>
+                                        <a href="{{ path('app_partner_edit', {'id': partner.id}) }}" title="Modifier">
+                                            <i class="fa-solid fa-pen fa-2x"></i>
+                                        </a>
+                                        <a href="{{ path('app_mail_partner_creation', { 'idPartner': partner.id }) }}" title="Mail type de création de compte">
+                                            <i class="fa-solid fa-envelope fa-2x"></i>
+                                        </a>
+                                        <a href="{{ path('app_mail_partner_perms', { 'idPartner': partner.id }) }}" title="Mail type de MAJ de permissions">
+                                            <i class="fa-sharp fa-solid fa-envelopes-bulk fa-2x"></i>
+                                        </a>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="row card__infos">
+                                    <h5 class="text-center mb-5">Identité du partenaire</h5>
+                                    <div class="row row-cols-1 row-cols-lg-2">
+                                        <p><b>Email:</b> {{ partner.email }}</p>
+                                        <p><b>Adresse:</b> {{ partner.address | title }}</p>
+                                        <p><b>Description:</b> {{ partner.description | title }}</p>
+                                        <p><b>Actif:</b> {{ partner.active ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                                    </div>
+                                    <hr class="pt-2">
+                                    <h5 class="text-center mb-3">Permissions</h5>
+                                    <div class="row row-cols-1 row-cols-lg-2">
+                                        <p><b>Vente de nourriture:</b> {{ partner.sellFood ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                                        <p><b>Vente de boisson:</b> {{ partner.sellDrink ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                                        <p><b>Envoi de newsletter:</b> {{ partner.sendNewsletter ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                                        <p><b>Gestion planning:</b> {{ partner.scheduleManagement ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                                        <p><b>Cours particulier:</b> {{ partner.privateLesson ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                    {% else %}
+                        <p class="text-center">Aucun enregistrement trouvé</p>
+                    {% endfor %} 
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include('_footer.html.twig') %}
+</div>
+{% endblock %}

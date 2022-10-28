@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche{% endblock %}
+
+{% block body %}
+
+<div class="container">
+{% if is_granted('ROLE_ADMIN') %}
+    {{ include('_navbar.html.twig') }}
+{% endif %}
+
+    <h1 class="text-center mt-5 mb-5">Recherche</h1>
+
+{% if is_granted('ROLE_STRUCTURE') %}
+    <button class="btn btn-outline-primary" title="Mon compte">
+        <a href="{{ path('app_structure_consult') }}">
+            <i class="fa-solid fa-chevron-left btnBack"></i>
+        </a>
+    </button>
+{% endif %}
+
+{% if is_granted('ROLE_PARTNER') %}
+    <button class="btn btn-outline-primary" title="Mon compte">
+        <a href="{{ path('app_partner_consult') }}">
+            <i class="fa-solid fa-chevron-left btnBack"></i>
+        </a>
+    </button>
+{% endif %}
+
+    <section class="mainContainer">
+        <div class="mainContainer__search mt-5">
+            <p>Vous pouvez effectuer une recherche sur l'ensemble des partenaires et structures du groupe SportClub:</p>           
+
+            <div class="d-flex justify-content-center">
+                <input type="search" id="search" class="mb-3 mainContainer__search--searchBar" placeholder="Saisissez votre recherche" data-search>
+            </div>
+        </div>
+
+        <h2 class="ms-5">Partenaires</h2>
+        <div class="row partner-cards" data-partner-cards-container></div>
+        <template data-partner-template>
+            <div class="card border-primary m-2 p-2 cardSearch">
+                <div class="header" data-header></div>
+                <div class="body" data-body></div>
+                <div class="footer" data-footer></div>  
+            </div>
+        </template>
+
+        <h2 class="ms-5 mt-3">Structures</h2>
+        <div class="row structure-cards" data-structure-cards-container></div>
+        <template data-structure-template>
+            <div class="card border-primary m-2 p-2 cardSearch">
+                <div class="header" data-header></div>
+                <div class="body" data-body></div>
+                <div class="footer" data-footer></div>
+            </div>
+        </template>
+    </section>
+{% include('_footer.html.twig') %}
+</div>
+{% endblock %}

@@ -1,0 +1,333 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;;
+}
+
+/* -------------------- */
+
+/* CSS general */
+body {
+    --general-background-color: rgba(211, 211, 211, 0.5);
+    --dashboard-background-color: black;
+    --dashboard-items-color: rgb(219, 222, 222);
+    --check-color: rgb(144, 238, 144);
+    --check-color-bis: rgb(76, 235, 76);
+    --uncheck-color: rgb(255, 0, 0);
+    --dashboard-search-hover: rgb(0, 0, 255);
+    --footer-color: rgb(211, 211, 211);
+    --footer-text: rgb(153, 150, 150);
+
+    background-color: var(--general-background-color);
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    font-weight: 600;
+}
+
+.mainContainer {
+    /* width: calc(100vw - 100px); */
+    margin-left: 100px;
+    margin-bottom: 100px;
+}
+
+.hide {
+    display: none;
+}
+
+/* -------------------- */
+
+/* Navbar */
+.main-menu {
+background-color: var(--dashboard-background-color);
+position: fixed;
+top: 0;
+bottom: 0;
+height: 100%;
+left: 0;
+width: 100px;
+overflow:hidden;
+z-index: 1000;
+}
+
+.main-menu:hover,
+nav.main-menu.expanded,
+.main-menu__list--item,
+.main-menu__list--logout {
+    width: 200px;
+    overflow: visible;
+}
+
+.main-menu__list--item {
+    list-style-type: none;
+    vertical-align: middle;
+    padding-top: 75px;
+}
+
+.main-menu__list--link {
+    text-decoration: none;
+    color: var(--dashboard-items-color);
+}
+
+/* .main-menu__list--logout {
+    position: absolute;
+    bottom: 10px;
+} */
+
+.main-menu__list--i {
+    vertical-align: middle;
+}
+
+.main-menu__list--title {
+    padding-left: 30px;
+}
+
+.fa-dumbbell {
+    transform: rotate(-45deg);
+}
+
+.menuMobile {
+    display: none;
+}
+
+/* -------------------- */
+
+/* Homepage */
+
+.home__title,
+.home__title--subtitle {
+    color: var(--color-text);
+}
+
+.card {
+    border-radius: 20px;
+}
+
+.card:hover {
+    box-shadow: 15px 15px 20px 5px rgba(0,0,0,0.7);
+}
+
+/* To align the text to the bottom of the card */
+.container__card--body {
+    display: flex;
+    flex-direction: column;
+}
+
+.container__card--text {
+    margin-top: auto;
+    text-decoration: none;
+}
+
+/* -------------------- */
+
+/* user-consult page */
+.user__btn--icon:hover {
+    color: white;
+}
+
+.user__btn--btnDisconnect:hover {
+    background-color: var(--uncheck-color);
+}
+
+.check {
+    color:var(--check-color);
+    padding-left: 5px;
+}
+
+.uncheck {
+    color: var(--uncheck-color);
+    padding-left: 5px;
+}
+
+.changePassword,
+.partnerDetails__structurelist {
+    text-decoration: none;
+}
+
+.partnerPerms,
+.structurePerms {
+    list-style-type: none;
+}
+
+/* -------------------- */
+
+/* Password validation page */
+.container__validatePass {
+    display: flex;
+    justify-content: center;
+}
+
+.container__validatePass--icon {
+    color: var(--check-color-bis);
+}
+
+/* -------------------- */
+
+/* Password generator page */
+#passwordToCopy {
+    border-color: var(--dashboard-search-hover);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+}
+
+/* -------------------- */
+
+/* Seach page */
+.mainContainer__search--searchBar {
+    width: 50vw;
+    height: 45px;
+    border-radius: 25px;
+    border-color: var(--dashboard-items-color);
+    padding-left: 10px;
+}
+
+.mainContainer__search--searchBar:hover,
+.mainContainer__search--searchBtn:hover {
+    border-color: var(--dashboard-search-hover);
+}
+
+.cardSearch {
+    width: 25%;
+}
+
+.cardSearch:hover {
+    box-shadow: none;
+}
+
+.linkCardSearch {
+    text-decoration: none;
+}
+
+/* -------------------- */
+
+/* Error pages */
+.errorIcon {
+    font-size: 6rem;
+}
+
+.errorText {
+    font-size: 3rem;
+}
+
+/* -------------------- */
+
+/* contactForm page */
+.container__form--fa {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+/* -------------------- */
+
+
+/* footer */
+html {
+    /* To put the footer at the bottom of the page */
+    min-height: 100vh;
+    position: relative;
+}
+
+.footerPage {
+    background-color: var(--footer-color);
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    white-space: nowrap;
+    bottom: 0;
+    left:0;
+    right:0;
+    padding-top: 15px;
+}
+
+.footerPage__link {
+    text-decoration: none;
+    color: var(--footer-text);
+}
+
+
+/* -------------------- */
+
+/* Responsive */
+@media screen and (max-width: 1030px) {
+    body {
+        font-size: 20px;
+    }
+
+    .main-menu {
+        display: none;
+    }
+
+    .menuMobile {
+        display: flex;
+    }
+
+    .main-menu__list--i {
+        padding-top: 0;
+        padding-top: 15px;
+    }
+
+    .main-menu__list--logout {
+        position: relative;
+        bottom: 0;
+    }
+
+    .menuMobile__ul {
+        background-color: var(--dashboard-background-color);
+        height: 70px;
+    }
+
+    /* To put the footer at the bottom of the page */
+    html {
+        min-height: calc(100vh - 70px);
+        position: relative;
+    }
+
+    .mainContainer {
+        margin-bottom: 150px;
+    }
+
+    .footerPage {
+        background-color: var(--footer-color);
+        position: absolute;
+        width: 100%;
+        height: 50px;
+        white-space: nowrap;
+        bottom: 70px;
+        left:0;
+        right:0;
+        padding-top: 15px;
+    }
+
+    .mainContainer {
+        margin-left: 0;
+    }
+
+    .card__infos {
+        text-align: center;
+    }
+
+    .partnerDetails,
+    .structureDetails {
+        text-align: center;
+    }
+
+    .cardSearch {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .container__form--btnForm {
+        margin-bottom: 30px;
+    }
+
+    .container__form--explicationForm {
+        text-align: center;
+    }
+
+    .mainContainer__search--searchBar {
+        width: 75vw;
+    }
+}

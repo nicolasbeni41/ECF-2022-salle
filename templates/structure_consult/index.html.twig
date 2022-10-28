@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails structure{% endblock %}
+
+{% block body %}
+<div class="container">
+{# Alert message after contactForm message #}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center mt-5">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+{% for structure in structures %}
+    {% if structure.id is same as app.user.id %}
+        <div class="containe user">
+            <div class="row">
+                <div class="col-lg-12 user__title">
+                    <h1 class="page-header text-center mt-5 mb-3">{{ structure.name }}</h1>
+                </div>
+                <div class="d-flex justify-content-center user__btn">
+                    <button class="btn btn-outline-primary mx-3">     
+                        <a href="{{ path('app_search') }}">
+                            <i class="fa-solid fa-magnifying-glass fa-2x user__btn--icon" title="Rechercher"></i>
+                        </a>
+                    </button>
+                    <button class="btn btn-outline-primary mx-3">     
+                        {# <a href="{{ path('app_contact_form_index') }}"> #}
+                        <a href="{{ path('app_contact_form_new', {'idStructure': app.user.id }) }}">
+                            <i class="fa-solid fa-message fa-2x user__btn--icon" title="Ecrire un nouveau message"></i>
+                        </a>
+                    </button>
+                    <button class="btn btn-outline-primary user__btn--btnDisconnect">     
+                        <a href="{{ path('app_logout') }}">
+                            <i class="fa-solid fa-power-off fa-2x user__btn--icon" title="Déconnexion"></i>
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row mt-5">
+                <div class="row row-cols-12 row-cols-lg-3 d-flex justify-content-around structureDetails">
+                    <section class="mt-5">
+                        <p>
+                            <p class="mb-4">Bonjour {{ structure.managerFirstname }} {{ structure.managerLastname }},</p>
+                            <p>Retrouvez ici les informations relatives à votre structure.</p>
+                        </p>
+                        <div>
+                            <p><b>Votre email de contact:</b> {{ structure.email }}.</p>
+                            <p><b>Addresse de votre structure:</b> {{ structure.address | title }}.</p>
+                        </div>
+                        <div>
+                            <a href="{{ path('app_structure_new_password', {'id': structure.id}) }}" class="changePassword">Modifier</a>
+                            mon mot de passe.
+                        </div>
+                        <div class="mt-3">
+                            <p>Vous appartenez au groupe de salles de sport de: <b>{{ structure.partnerId.name }}.</b></p>
+                        </div>
+                    </section>
+
+                    <section class="mt-5">
+                        <h2>Vos permissions</h2>
+                        <ul class="structurePerms">
+                            <li><b>Compte actif:</b> {{ structure.active ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</li>
+                            <li><b>Vendre de la nourriture:</b> {{ structure.sellFood ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</li>
+                            <li><b>Vendre de la boisson:</b> {{ structure.sellDrink ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</li>
+                            <li><b>Envoyer des newsletters:</b> {{ structure.sendNewsletter ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</li>
+                            <li><b>Utiliser le gestionnaire de planning:</b> {{ structure.scheduleManagement ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</li>
+                            <li><b>Proposer des cours particuliers:</b> {{ structure.privateLesson ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+{% include('_footer.html.twig') %}
+</div>
+    
+{% endblock %}

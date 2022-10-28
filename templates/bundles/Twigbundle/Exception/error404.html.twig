@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page non trouvée{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-5">Page non trouvée</h1>
+
+    <p class="text-center mt-5 errorText">La page que vous cherchez n'a pas été trouvée</p>
+    <div class="d-flex justify-content-center">
+        <a href="{{ path('app_home') }}" class="btn btn-outline-primary">Retour à l'accueil</a>
+    </div>
+    <div class="d-flex justify-content-center mt-5">
+        <p class="errorIcon">🤔</p>
+    </div>
+    {% include('_footer.html.twig') %}
+</div>
+{% endblock %}

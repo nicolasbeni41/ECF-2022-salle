@@ -1,0 +1,5 @@
+{{ form_start(form) }}
+    {{ form_row(form.title, { label : 'Titre du message' }) }}
+    {{ form_row(form.content, { label : 'Contenu du message' }) }}
+    <button class="btn btn-outline-primary my-2">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

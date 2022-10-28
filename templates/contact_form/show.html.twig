@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Message{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center my-5">Message N°{{ contact_form.id }}</h1>
+    <section class="d-flex justify-content-center gap-3">
+        <a href="{{ path('app_contact_form_index') }}" class="btn btn-outline-success">Retour à la liste</a>
+        {# <a href="{{ path('app_contact_form_edit', {'id': contact_form.id}) }}">edit</a> #}
+    </section>
+
+    <section>
+        <p><b>Titre du message:</b> {{ contact_form.title }}</p>
+        <p><b>Contenu du message:</b></p>
+        <p>{{ contact_form.content }}</P>
+
+    </section>
+
+    {{ include('contact_form/_delete_form.html.twig') }}
+    {% include('_footer.html.twig') %}
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+<nav class="main-menu">
+    <ul class="main-menu__list">
+        <li class="main-menu__list--item">
+            <a href="{{ path('app_technical_team') }}" class="main-menu__list--link">
+                <i class="fa-solid fa-house fa-2x main-menu__list--i"></i>
+                <span class="main-menu__list--title">Accueil</span>
+            </a>                    
+        </li>
+        <li class="main-menu__list--item">
+            <a href="{{ path('app_partner_index') }}" class="main-menu__list--link">
+                <i class="fa-solid fa-users fa-2x main-menu__list--i"></i>
+                <span class="main-menu__list--title">Partenaires</span>
+            </a>                    
+        </li>
+        <li class="main-menu__list--item">
+            <a href="{{ path('app_structure_index') }}" class="main-menu__list--link">
+                <i class="fa-solid fa-dumbbell fa-2x main-menu__list--i"></i>
+                <span class="main-menu__list--title">Structures</span>
+            </a>
+        </li>
+        <li class="main-menu__list--item">
+            <a href="{{ path('app_search') }}" class="main-menu__list--link">
+                <i class="fa-solid fa-magnifying-glass fa-2x main-menu__list--i"></i>
+                <span class="main-menu__list--title">Rechercher</span>
+            </a>
+        </li>
+        <li class="main-menu__list--item">
+            <a href="{{ path('app_contact_form_index') }}" class="main-menu__list--link">
+                <i class="fa-solid fa-message fa-2x main-menu__list--i"></i>
+                <span class="main-menu__list--title">Messages</span>
+            </a>
+        </li>
+        <li class="main-menu__list--item">
+            <a href="{{ path('app_logout') }}" class="main-menu__list--link main-menu__list--logout">
+                <i class="fa-solid fa-arrow-right-from-bracket fa-2x main-menu__list--i"></i>
+                <span class="main-menu__list--title">Déconnexion</span>
+            </a>
+        </li>
+    </ul>
+
+    {# <ul class="main-menu__list">
+        <li class="main-menu__list--item">
+            <a href="{{ path('app_logout') }}" class="main-menu__list--link main-menu__list--logout">
+                <i class="fa-solid fa-arrow-right-from-bracket fa-2x main-menu__list--i"></i>
+                <span class="main-menu__list--title">Déconnexion</span>
+            </a>
+        </li>  
+    </ul> #}
+</nav>
+
+<nav class="menuMobile">
+    <ul class="nav menuMobile__ul fixed-bottom d-flex justify-content-around">
+        <li class="nav-item">
+            <a href="{{ path('app_technical_team') }}" class="main-menu__list--link">
+                <i class="fa-solid fa-house fa-2x main-menu__list--i"></i>
+            </a>   
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('app_partner_index') }}" class="main-menu__list--link">
+                <i class="fa-solid fa-users fa-2x main-menu__list--i"></i>
+            </a> 
+        </li>
+        <li class="nav-item"><a href="{{ path('app_structure_index') }}" class="main-menu__list--link">
+                <i class="fa-solid fa-dumbbell fa-2x main-menu__list--i"></i>
+            </a>
+        </li>
+        <li class="nav-item"><a href="{{ path('app_search') }}" class="main-menu__list--link">
+                <i class="fa-solid fa-magnifying-glass fa-2x main-menu__list--i"></i>
+            </a>
+        </li>
+        <li class="nav-item"><a href="{{ path('app_contact_form_index') }}" class="main-menu__list--link">
+                <i class="fa-solid fa-message fa-2x main-menu__list--i"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('app_logout') }}" class="main-menu__list--link main-menu__list--logout">
+                <i class="fa-solid fa-arrow-right-from-bracket fa-2x main-menu__list--i"></i>
+            </a>
+        </li>
+    </ul>
+</nav>

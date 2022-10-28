@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails partenaire{% endblock %}
+
+{% block body %}
+{% if is_granted('ROLE_ADMIN') %}
+    {% include ('_navbar.html.twig') %}
+{% endif %}
+<div class="mainContainer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header text-center mb-5 mt-2">Détails de {{ partner.id }} - {{ partner.name }}</h1>
+                {% if (is_granted('ROLE_PARTNER')) or (is_granted('ROLE_STRUCTURE')) %}
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-outline-primary user__btn--btnDisconnect mx-3">     
+                            <a href="{{ path('app_logout') }}">
+                                <i class="fa-solid fa-power-off fa-2x user__btn--icon" title="Déconnexion"></i>
+                            </a>
+                        </button>
+                    <div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="row row-cols-12 row-cols-lg-3 d-flex justify-content-around partnerDetails">
+                <div class="mt-3">
+                    <h2 class="mb-3">Identité du partenaire</h2>
+                    <p><b>Email:</b> {{ partner.email }}</p>
+                    <p><b>Adresse:</b> {{ partner.address | title }}</p>
+                    <p><b>Description:</b> {{ partner.description }}</p>
+                    <p><b>Actif:</b> {{ partner.active ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                </div>
+                <div class="mt-5">
+                    <h2 class="mb-3">Permissions du partenaire</h2>
+                    <p><b>Vente de nourriture:</b> {{ partner.sellFood ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                    <p><b>Vente de boisson:</b> {{ partner.sellDrink ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                    <p><b>Envoi de newsletter:</b> {{ partner.sendNewsletter ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                    <p><b>Gestion planning:</b> {{ partner.scheduleManagement ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                    <p><b>Cours particuliers:</b> {{ partner.privateLesson ? '<i class="fa-solid fa-check check fa-2x"></i>' : '<i class="fa-solid fa-circle-xmark uncheck fa-2x"></i>' }}</p>
+                </div>
+            </div>
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="ms-5 mt-5">
+                <a href="{{ path('app_partner_index') }}" class="btn btn-outline-success mb-2">Retour à la liste</a>
+                <br>
+                <a href="{{ path('app_partner_edit', {'id': partner.id}) }}" class="btn btn-outline-primary">Modifier</a>
+
+            {{ include('partner/_delete_form.html.twig') }}
+            </div>
+        {% endif %}
+    </div>
+    {% include('_footer.html.twig') %}
+</div>
+{% endblock %}

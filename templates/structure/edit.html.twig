@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification de la structure{% endblock %}
+
+{% block body %}
+{% include ('_navbar.html.twig') %}
+<div class="mainContainer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header text-center mt-2">Modifier la structure</h1>
+            </div>
+        </div>
+
+        <div class="m-5">
+
+            {{ include('structure/_formUpdate.html.twig', {'button_label': 'Modifier'}) }}
+
+            <a href="{{ path('app_structure_index') }}" role="button" class="btn btn-outline-success mt-2">Retour à la liste</a>
+
+            {{ include('structure/_delete_form.html.twig') }}
+        </div>
+    </div>
+    {% include('_footer.html.twig') %}
+</div>
+{% endblock %}

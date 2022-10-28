@@ -1,0 +1,19 @@
+body {
+    background-image: url(../img/sportHall.jpg);
+    background-repeat: no repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    --color-box: rgba(211, 211, 211, 0.8);
+    --color-text: rgba(153, 153, 153);
+}
+
+.loginBox,
+.registrationBox {
+    background-color: var(--color-box);
+    border-radius: 25px;
+}
+/* 
+.home__title,
+.home__title--subtitle {
+    color: var(--color-text);
+} */

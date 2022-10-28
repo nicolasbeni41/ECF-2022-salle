@@ -1,0 +1,18 @@
+.mailContainer__title {
+    color: rgb(0, 0, 255);
+    margin-bottom: 20px;
+}
+
+.mailContainer__greetings,
+.mailContainer__content {
+    margin-bottom: 30px;
+}
+
+.mailContainer__footer {
+    margin-top: 50px;
+}
+
+.mailContainer__content--information {
+    color:red;
+    font-size: larger;
+}

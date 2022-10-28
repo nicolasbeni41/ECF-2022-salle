@@ -1,0 +1,37 @@
+{% apply inline_css(source('@css/stylesMail.css')) %}
+
+<html>
+    <head>
+        <meta chartset="UTF-8">
+    </head>
+    <body>
+        <section class="mailContainer">
+            <h2 class="mailContainer__title">Création de votre compte - {{ newsletter_date|date('d m Y') }}</h2>
+            <p class="mailContainer__greetings">Bonjour {{ structure.name|title }},</p>
+            <div class="mailContainer__content">
+                <p>SportClub est heureux de vous informer de la création de votre compte.</p>
+                <br>
+                <div>
+                    <b>Rappel de vos informations:</b>
+                    <p><b>Votre email de contact:</b> {{ structure.email }}.</p>
+                    <p><b>Votre adresse:</b> {{ structure.address|title }}.</p>
+                    {% if structure.active %}
+                        <p>Votre compte est <b>actif</b>.</p>
+                    {% endif %}
+                    <p><b>Votre partenaire de rattachement est </b> {{ structure.partnerId }}.</p>
+                </div>
+                <br>
+                <p>Vous receverez prochainement un mot de passe temporaire qu'il faudra <span class="mailContainer__content--information">impérativement modifier</span> dans votre espace personnel.</p>
+                <p>En cas de besoin, un formulaire de contact est disponible sur la plateforme.</p>
+            </div>
+            <div class="mailContainer__footer">
+                <p>Sportivement votre.</p>
+                <p>L'équipe technique SportClub.</p>
+            </div>
+        </section>
+    </body>
+</html>
+
+{% endapply %}
+
+

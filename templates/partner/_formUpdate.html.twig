@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+
+<div class="row justify-content-between">
+    <div class="col-12 col-lg-5 ml-auto">
+        <h2 class="my-4">Identité du partenaire</h2>
+        {{ form_row(form.name, { label: 'Nom du partenaire' }) }}
+        {{ form_row(form.email, { label: 'Email' }) }}
+        {{ form_row(form.address, { label: 'Adresse' }) }}
+        {{ form_row(form.description, { label: 'Description' }) }}        
+        {{ form_row(form.technicalTeamId, { label: 'Identifiant de l\'équipe technique' }) }}
+    </div>
+    <div class="col-12 col-lg-5 mr-auto">
+        <h2 class="my-4">Permissions du partenaire</h2>    
+        {{ form_row(form.active, { label: 'Actif'}) }}
+        {{ form_row(form.sellFood, { label: 'Vente de nourriture' }) }}
+        {{ form_row(form.sellDrink, { label: 'Vente de boisson' }) }}
+        {{ form_row(form.sendNewsletter, { label: 'Envoi de newsletter' }) }}
+        {{ form_row(form.scheduleManagement, { label: 'Gestion de planning'  }) }}
+        {{ form_row(form.privateLesson, { label: 'Cours particuliers' }) }}
+    </div>
+</div>
+
+<button class="btn btn-outline-primary ml-5 mt-2"  onclick='return confirm("Etes-vous certain des modifications apportées ?")'>{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

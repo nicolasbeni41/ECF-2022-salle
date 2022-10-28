@@ -1,0 +1,27 @@
+<!DOCTYPE>
+{% apply inline_css(source('@css/stylesMail.css')) %}
+
+<html>
+    <head>
+        <meta chartset="UTF-8">
+    </head>
+    <body>
+        <section class="mailContainer">
+            <h2 class="mailContainer__title">Lettre d'information - {{ newsletter_date|date('d m Y') }}</h2>
+            <p class="mailContainer__greetings">Bonjour {{ partner.name|title }},</p>
+            <div class="mailContainer__content">
+                <p>Des informations relatives à votre compte SportClub ont été mises à jour.</p>
+                <p>Connectez-vous pour les consulter.</p>
+            </div>
+            <div class="mailContainer__footer">
+                <p>Sportivement votre.</p>
+                <p>L'équipe technique SportClub.</p>
+            </div>
+        </section>
+    </body>
+</html>
+
+{% endapply %}
+
+
+

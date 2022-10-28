@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire de contact{% endblock %}
+
+{% block body %}
+{% if is_granted('ROLE_ADMIN') %}
+    {% include('_navbar.html.twig') %}
+{% endif %}
+<div class="mainContainer">
+    <div class="container">
+        <h1 class="page-header text-center mt-5 mb-3">Liste des messages</h1>        
+        <div class="d-flex flex-column align-items-center">
+            <div>
+                <p class="container__form--explicationForm text-info">Une fois traité, le message peut être supprimé.</p>
+            </div>
+            <div>
+                {% if is_granted('ROLE_PARTNER') %}
+                    <a href="{{ path('app_partner_consult') }}" role="button" class="btn btn-outline-success mt-2 container__form--btnForm">Retour à mon compte</a>
+                    <a href="{{ path('app_contact_form_partner_new', {'idPartner': app.user.id }) }}" class="btn btn-outline-primary mt-2">Nouveau message</a>
+                {% elseif is_granted('ROLE_STRUCTURE') %}
+                    <a href="{{ path('app_structure_consult') }}" role="button" class="btn btn-outline-success mt-2 container__form--btnForm">Retour à mon compte</a>
+                    <a href="{{ path('app_contact_form_new', {'idStructure': app.user.id }) }}" class="btn btn-outline-primary mt-2">Nouveau message</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <section class="container">
+            <div class="m-5">
+                {% for contact_form in contact_forms %}
+                    <p><b>Titre du message:</b> {{ contact_form.title }}</p>
+                    {% if contact_form.partnerID %}
+                        <p><b>Partenaire:</b> {{ contact_form.partnerID }}</p>
+                    {% endif %}
+                    {% if contact_form.structureId %}
+                        <p><b>Structure:</b> {{ contact_form.structureId }}</p>
+                    {% endif %}
+                    <p><b>Contenu du message:</b></p>
+                    <p>{{ contact_form.content }}</p>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <div> 
+                        {{ include('contact_form/_delete_form.html.twig') }}
+                    </div>
+                    {% endif %}
+                    <hr>
+                {% else %}
+                    <div>
+                        <p class="text-center mt-5">Aucun message</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+    {% include('_footer.html.twig') %}
+</div>
+
+{% endblock %}

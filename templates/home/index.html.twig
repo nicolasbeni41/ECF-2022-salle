@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil | SportClub{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/css/stylesLogin.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div class="container home">
+    <h1 class="d-flex justify-content-center mt-5 text-center home__title">Bienvenue chez SportClub</h1>
+    <h2 class="my-5 text-center home__title--subtitle">Vous souhaitez vous connecter en tant que:</h2>
+
+    <div class="container">
+        <div class="row justify-content-around gap-3 container__card mb-5">
+            <div class="card" style="width: 20rem;">
+                <a href="{{ path('app_login') }}" class="card-text container__card--text text-center">
+                    <img class="card-img-top" src="{{ asset('/img/technicalTeam.png') }}" alt="Card image cap">
+                    <div class="card-body container__card--body">
+                        <p>Equipe Technique</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card" style="width: 20rem;">
+                <a href="{{ path('app_login') }}" class="card-text container__card--text text-center">
+                    <img class="card-img-top" src="{{ asset('/img/partner.png') }}" alt="Card image cap">
+                    <div class="card-body container__card--body">
+                        <p>Partenaire</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card" style="width: 20rem;">
+                <a href="{{ path('app_login') }}" class="card-text container__card--text text-center">
+                    <img class="card-img-top" src="{{ asset('/img/salleGym.png') }}" alt="Card image cap">
+                    <div class="card-body container__card--body">
+                        <p>Salle de sport</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

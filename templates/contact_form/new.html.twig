@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau message{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <h1 class="page-header text-center mt-5 mb-5">Créer un nouveau message</h1>
+
+    {{ include('contact_form/_form.html.twig') }}
+
+    {% if is_granted('ROLE_PARTNER') %}
+        <a href="{{ path('app_partner_consult') }}" class="btn btn-outline-success">Annuler</a>
+    {% elseif is_granted('ROLE_STRUCTURE') %}
+        <a href="{{ path('app_structure_consult') }}" class="btn btn-outline-success">Annuler</a>
+    {% endif %}
+{% include('_footer.html.twig') %}
+</div>
+{% endblock %}
