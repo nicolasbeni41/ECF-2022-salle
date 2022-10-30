@@ -114,3 +114,4 @@ Pour installer du projet sur une machine, vous devez le cloner depuis le dépôt
 ### Création d'un profil administrateur
 Pour tester l'application il est nécessaire de créer un utilisateur pour cela rendez-vous à l'adresse https://127.0.0.1:8000/register et remplissez le formulaire.
 
+## Annexes du projet 
